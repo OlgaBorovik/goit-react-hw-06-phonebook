@@ -3,29 +3,29 @@ import ContactsForm from "./ContactsForm/ContactsForm"
 import ContactList from "./ContactList/ContactList"
 import { Filter } from "./Filter/Filter"
 import {Section, Title, Container} from "./section.styled"
-import { useState, useEffect } from "react";
+// import { useEffect } from "react";
 // import { nanoid } from 'nanoid'
+import { useDispatch, useSelector } from "react-redux"
+import { getContacts, getFilter } from "redux/selectors";
+import { setFilter } from "../redux/filterSlice"
 
 
 
 const App = () => {
-  const contactsFromStorage = JSON.parse(localStorage.getItem('contacts'))
+  // const contactsFromStorage = JSON.parse(localStorage.getItem('contacts'))
 
-  const [filter, setFilter] = useState('')
-  const [contacts, setContacts] = useState(contactsFromStorage ?? [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ])
+  const filter = useSelector(getFilter)
+  const contacts = useSelector(getContacts)
+  const dispatch = useDispatch()
 
   
-  useEffect(() => 
-    localStorage.setItem('contacts', JSON.stringify(contacts), [contacts]))
+  // useEffect(() => 
+  //   localStorage.setItem('contacts', JSON.stringify(contacts), [contacts]))
   
 
   const filterChangeHandler = (event) => {
-    setFilter(event.target.value)
+    dispatch(setFilter(event.target.value))
+    console.log(filter)
   }
 
   let filteredContacts = contacts;
