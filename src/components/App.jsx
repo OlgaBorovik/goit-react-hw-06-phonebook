@@ -23,26 +23,12 @@ const App = () => {
   useEffect(() => 
     localStorage.setItem('contacts', JSON.stringify(contacts), [contacts]))
   
-  const formSubmitHandler = (data) => {
-    if (contacts.find(contact => contact.name === data.name)) {
-      alert(`${data.name} is already in contacts`);
-      return;
-    }
-    setContacts([data, ...contacts]
-    )
-  }
 
   const filterChangeHandler = (event) => {
     setFilter(event.target.value)
   }
 
-  const onDeleteContact = ({ id }) => {
-    setContacts(contacts.filter(contact => contact.id !== id),
-    );
-  };
-
-  
-    let filteredContacts = contacts;
+  let filteredContacts = contacts;
     if (filter) {
       filteredContacts = contacts.filter(({ name }) => {
         return name.toLowerCase().includes(filter.toLowerCase());
@@ -53,9 +39,7 @@ const App = () => {
       <Section>
         <Container>
         <Title>Phonebook</Title>
-        <ContactsForm
-          onSubmitProp={formSubmitHandler}
-        />
+        <ContactsForm/>
         </Container>
         <Container>
         <Title>Contacts</Title>
@@ -65,7 +49,6 @@ const App = () => {
         />
         <ContactList
           contacts={filteredContacts}
-          onDelete={onDeleteContact}
         />
       </Container>
       </Section>

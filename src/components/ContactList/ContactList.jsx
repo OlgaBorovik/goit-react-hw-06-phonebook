@@ -1,18 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types"
-import { ContactsUl, ContactItem, Button, Span} from "./ContactList.styled"
+import { ContactsUl, ContactItem } from "./ContactList.styled"
+import Contact from "../Contact/Contact"
+import {getContacts} from "../../redux/selectors"
+import { useSelector } from "react-redux";
 
-function ContactList({contacts, onDelete}) {
-    
+
+function ContactList() {
+    const contacts = useSelector(getContacts)
     return (
         <div>
             <ContactsUl>
-                {contacts.map(({id, name, number}) => (
-                    <ContactItem key={id}><Span>{name}: {number}</Span>
-                        <Button type="button" onClick={() =>  onDelete({id})}>Delete</Button> 
-                    </ContactItem>
-                   
-                ))}
+                {contacts.map(contact  => (
+                <ContactItem key={contact.id}>
+                    <Contact contact={contact}  />    
+                </ContactItem>    
+                   ))}
             </ContactsUl>
         
       </div>
