@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types"
 import { ContactsUl, ContactItem } from "./ContactList.styled"
 import Contact from "../Contact/Contact"
-import {getContacts} from "../../redux/selectors"
-import { useSelector } from "react-redux";
 
 
-function ContactList() {
-    const contacts = useSelector(getContacts)
+
+function ContactList({contacts}) {
     return (
         <div>
             <ContactsUl>
@@ -15,7 +13,7 @@ function ContactList() {
                 <ContactItem key={contact.id}>
                     <Contact contact={contact}  />    
                 </ContactItem>    
-                   ))}
+                ))}
             </ContactsUl>
         
       </div>
