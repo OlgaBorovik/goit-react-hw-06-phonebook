@@ -7,7 +7,7 @@ import Contact from "../Contact/Contact"
 
 function ContactList({contacts}) {
     return (
-        <div>
+        
             <ContactsUl>
                 {contacts.map(contact  => (
                 <ContactItem key={contact.id}>
@@ -15,8 +15,6 @@ function ContactList({contacts}) {
                 </ContactItem>    
                 ))}
             </ContactsUl>
-        
-      </div>
         )
     
 

@@ -10,17 +10,18 @@ import { getContacts, getFilter } from "redux/selectors";
 
 
 const App = () => {
-  // const contactsFromStorage = JSON.parse(localStorage.getItem('contacts'))
-
   const filter = useSelector(getFilter)
   const contacts = useSelector(getContacts)
+
+  console.log(contacts)
   
   const filteredContacts = useMemo(() => {
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())
     );
   }, [contacts, filter]);
-  
+
+    
   return (
       <Section>
         <Container>
@@ -38,10 +39,6 @@ const App = () => {
 
   
 }
-
-
-
-
 
 export default App
 
